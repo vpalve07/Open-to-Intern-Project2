@@ -1,0 +1,18 @@
+{
+  "name": "internshipgroup12",
+  "version": "1.0.0",
+  "description": "Internship Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "author": "Vinayak,Piyush,Abhinandan",
+  "license": "ISC",
+  "dependencies": {
+    "email-validator": "^2.0.4",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3",
+    "nodemon": "^2.0.20",
+    "validator": "^13.7.0"
+  }
+}
