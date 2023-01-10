@@ -34,8 +34,8 @@ const getCollege = async function (req, res) {
         let queryParam = req.query
         if (Object.keys(queryParam).length == 0) return res.status(400).send({ status: false, msg: "Give the data first for fetching document!!!" })
         // let {name,fullName} = queryParam
-        // let lower = queryParam.collegeName.toLowerCase()
-        let findCollege = await collegeModel.findOne({ $or: [{ name: queryParam.collegeName }, { fullName: queryParam.fullName }, { _id: queryParam.collegeId }] })
+        let lower = queryParam.collegeName.toLowerCase()
+        let findCollege = await collegeModel.findOne({ $or: [{ name: lower }, { fullName: queryParam.fullName }, { _id: queryParam.collegeId }] })
         if (!findCollege) return res.status(400).send({ status: false, msg: "Don't Have any college with this data in database" })
 
         let { name, fullName, logoLink } = findCollege
