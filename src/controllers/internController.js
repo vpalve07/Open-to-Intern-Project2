@@ -5,6 +5,7 @@ const validator = require("validator")
 const intern = async function (req, res) {
     try {
         let data = req.body
+        if (!data) return res.status(400).send({ status: false, msg: "Request body can't be empty" })
 
         let { name, mobile, email, collegeName } = data
 
@@ -26,7 +27,6 @@ const intern = async function (req, res) {
         let findCollege = await collegeModel.findOne({ name: data.collegeName }).select()
         if (!findCollege) return res.status(400).send({ status: false, msg: "College Not found" })
         
-        if (!data) return res.status(400).send({ status: false, msg: "Request body can't be empty" })
         data.collegeId = findCollege._id
         let createIntern = await internModel.create(data)
         res.status(201).send({ status: true, data: createIntern })
