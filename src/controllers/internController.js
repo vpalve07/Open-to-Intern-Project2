@@ -25,7 +25,7 @@ const intern = async function (req, res) {
 
         if (!collegeName) return res.status(400).send({ status: false, msg: "Enter the collegeName first!!!" })
 
-        let findCollege = await collegeModel.findOne({ name: data.collegeName }).select()
+        let findCollege = await collegeModel.findOne({ name: data.collegeName , isDeleted:false }).select()
         if (!findCollege) return res.status(400).send({ status: false, msg: "College Not found" })
 
         data.collegeId = findCollege._id
