@@ -20,7 +20,8 @@ const intern = async function (req, res) {
         if (!mobile) return res.status(400).send({ status: false, msg: "Enter the mobile number first!!!" })
         let findMobile = await internModel.findOne({ mobile: mobile })
         if (findMobile) return res.status(400).send({ status: false, msg: "mobile Number is already exist in database" })
-        if (mobile.length < 10 || mobile.length > 10) return res.status(400).send({ status: false, msg: "mobile Number is not valid" })
+        let IndNum = /^[0]?[123456789]\d{9}$/
+        if(!IndNum.test(mobile)) return res.status(400).send({ status: false, msg: "please enter valid mobile number" })
 
         if (!collegeName) return res.status(400).send({ status: false, msg: "Enter the collegeName first!!!" })
 
