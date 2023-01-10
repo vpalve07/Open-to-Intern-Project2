@@ -6,7 +6,7 @@ const validator = require("validator")
 const college = async function (req, res) {
     try {
         let data = req.body
-        if (!data) return res.status(400).send({ status: false, msg: "Request body can't be empty" })
+        if (Object.keys(data).length==0) return res.status(400).send({ status: false, msg: "Request body can't be empty" })
         let { name, fullName, logoLink, isDeleted } = data
         if (!name) return res.status(400).send({ status: false, msg: "Enter the name first!!!" })
         if (!validator.isAlpha(name)) return res.status(400).send({ status: false, msg: "name should be in Alphabetical format" })
