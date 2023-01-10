@@ -8,6 +8,7 @@ const college = async function (req, res) {
         let data = req.body
         if (Object.keys(data).length==0) return res.status(400).send({ status: false, msg: "Request body can't be empty" })
         let { name, fullName, logoLink, isDeleted } = data
+
         if (!name) return res.status(400).send({ status: false, msg: "Enter the name first!!!" })
         if (!validator.isAlpha(name)) return res.status(400).send({ status: false, msg: "name should be in Alphabetical format" })
         let duplicateName = await collegeModel.findOne({ name: name })                                     
@@ -34,7 +35,9 @@ const getCollege = async function (req, res) {
         // let lower = queryParam.collegeName.toLowerCase()
         let findCollege = await collegeModel.findOne({ $or: [{ name: queryParam.collegeName }, { fullName: queryParam.fullName }, { _id: queryParam.collegeId }] })
         if (!findCollege) return res.status(400).send({ status: false, msg: "Don't Have any college with this data in database" })
+        
         let { name, fullName, logoLink } = findCollege
+
         let internCollege = await internModel.find({ collegeId: findCollege._id }).select({ name: 1, email: 1, mobile: 1 })
         if (internCollege.length == 0) return res.status(400).send({ status: false, msg: "No Interns Found." })
         res.status(200).send({ status: true, data: { name, fullName, logoLink, interns: internCollege } })
