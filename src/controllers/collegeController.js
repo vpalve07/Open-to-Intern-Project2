@@ -15,6 +15,8 @@ const college = async function (req, res) {
         if (duplicateName) return res.status(400).send({ status: false, msg: "name is is already exist in database" })
 
         if (!fullName) return res.status(400).send({ status: false, msg: "Enter the fullName first!!!" })
+        let fnameRegex = /^[a-zA-Z ]*$/;
+        if(!fnameRegex.test(fullName)) return res.status(400).send({ status: false, msg: "fullName should be in Alphabetical format" })
 
         if (!logoLink) return res.status(400).send({ status: false, msg: "Enter the logoLink first!!!" })
         let logoLinkFormat = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
