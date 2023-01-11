@@ -10,7 +10,6 @@ const intern = async function (req, res) {
         let { name, mobile, email, collegeName } = data
 
         if (!name) return res.status(400).send({ status: false, msg: "Enter the name first!!!" })
-        if (!validator.isAlpha(name)) return res.status(400).send({ status: false, msg: "name should be in Alphabetical format" })
 
         if (!email) return res.status(400).send({ status: false, msg: "Enter the email Id first!!!" })
         if (!validator.isEmail(email)) return res.status(400).send({ status: false, msg: "email Id is Invalid" })
