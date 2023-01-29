@@ -1,4 +1,4 @@
-# projectInternship
+# project-Internship Platform
 # Californium
 
 ## Open to Intern Project Requirement
